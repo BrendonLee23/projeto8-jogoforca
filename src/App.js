@@ -7,7 +7,7 @@ export default function App() {
       <div class="container">
     <div class="rised-area">
       <div class="rised-right">
-        <img src={img0} alt="forca-img"></img>
+        <img class="img-forca" src={img0} alt="forca-img"></img>
       </div>
       <div class="rised-left">
         <button class="choice-word" alt="choice-word" ><p>Escolher Palavra</p></button>
