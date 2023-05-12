@@ -91,31 +91,16 @@ body {
     align-items: center;
     text-align: center;
     color: #000000;
+    padding-left: 30px;
 }
 
-.word li {
-    display: inline-block;
-    position: relative;
+.word p {
+    letter-spacing: 20px; /* add 5px of space between each letter */
 }
 
-.word li span {
-    position: relative;
-    z-index: 1;
-    padding-right: 20px;
-}
-
-.word li:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 100%;
-    height: 5px;
-    background-color: black;
-    z-index: 0;
-    margin-bottom: 10px;
+.underline {
+    color: #000000;
+    text-decoration: underline;
 }
 
 .lower-area {
@@ -130,13 +115,14 @@ body {
 
 .kayboard {
     background: #FFFFFF;
-    width: 650px;
-    height: 130px;
+    width: 760px;
+    height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 5px;
 }
 
 .button-letter {
@@ -163,4 +149,15 @@ body {
     align-items: center;
     text-align: center;
     color: #39739D;
+}
+.disabled {
+    width: 40px;
+    height: 40px;
+    background: #8b8e8f;
+    border: 1px solid #7AA7C7;
+    border-radius: 3px;
+    text-align: center;
+    padding-left: 13px;
+    margin-left: 10px;
+    cursor:not-allowed;
 }
