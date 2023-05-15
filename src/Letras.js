@@ -12,7 +12,7 @@ function Letra(props) {
     }
 
     return (
-        <button
+        <button data-test="letter"
             onClick={() => {
                 setTimeout(() => {
                     document.querySelectorAll('.disabled').forEach((elemento) => {
@@ -30,23 +30,22 @@ function Letra(props) {
 export default function Letras(props) {
     const [numCliques, setNumCliques] = useState(0);
     /* const [rodadasRestantes, setRodadasRestantes] = useState(5); */
-    const [selectedLetters, setSelectedLetters] = useState([]);
+    
 
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
 
     function contagemClicks(letra) {
         setNumCliques(numCliques + 1);
         /* setRodadasRestantes(5 - numCliques - 1); */
-        if (numCliques >= 5) {
+        if (numCliques >= 6) {
             alert("Você perdeu");
             window.location.reload(); // recarrega a página
         } else {
             /* alertRodadasRestantes(); */
         }
-
-        const newSelectedLetters = [...selectedLetters];
+        const newSelectedLetters = [...props.selectedLetters];
         newSelectedLetters.push(letra);
-        setSelectedLetters(newSelectedLetters);
+        props.setSelectedLetters(newSelectedLetters);
         console.log(newSelectedLetters);
     }
 
@@ -61,7 +60,7 @@ export default function Letras(props) {
                     <Letra
                         alfabeto={letra}
                         key={letra}
-                        selectedLetters={selectedLetters}
+                        selectedLetters={props.selectedLetters}
                         onLetterClicked={contagemClicks}
                     />
                 ))}
