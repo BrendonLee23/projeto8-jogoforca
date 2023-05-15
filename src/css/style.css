@@ -65,6 +65,18 @@ body {
     cursor: pointer;
 }
 
+.choice-word-disabled {
+    width: 200px;
+    height: 60px;
+    background-color: #718579;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    padding-left: 20px;
+    cursor:not-allowed;
+}
+
 .choice-word p {
     width: 200px;
     height: 60px;
@@ -78,6 +90,22 @@ body {
     text-align: center;
     color: #fff;
 }
+
+.choice-word-disabled p {
+    width: 200px;
+    height: 60px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #555050;
+}
+
+
 
 .word {
     width: 308px;

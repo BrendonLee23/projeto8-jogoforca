@@ -1,19 +1,19 @@
+
 import { useState } from "react";
 import Jogo from "./Jogo";
 import Letras from "./Letras";
-import palavras from "./Palavras";
+
 
 export default function App() {
 
-  function escolherPalavra(){
-    alert("oi")
-  }
+  const [erro, setErro] = useState()
+  const [escolha, disableEscolha] = useState(true)
 
   return (
     <div>
       <div className="container">
-      <Jogo escolherPalavra={escolherPalavra}/>
-      <Letras />
+      <Jogo escolha={escolha} disableEscolha={disableEscolha} />
+      <Letras erro={erro} setErro={setErro} />
   </div>
     </div>
   );

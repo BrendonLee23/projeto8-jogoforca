@@ -2,22 +2,25 @@ import { useState } from "react"
 
 function Letra(props) {
 
-    const [letter, setLetterSelected] = useState([]);
+    const [isSelected, setIsSelected] = useState(false);
 
     function letterClicked(letra) {
-        const selecionado = letter.includes(letra);
-        if (!selecionado && letter.length < 7) {
-            const novo = [...letter];
-            novo.push(letra);
-            setLetterSelected(novo);
-            props.onLetterClicked();
+        if (!isSelected && props.selectedLetters.length < 7) {
+            setIsSelected(true);
+            props.onLetterClicked(letra);
         }
     }
 
     return (
         <button
-            onClick={() => letterClicked(props.alfabeto)}
-            className={`button-letter ${letter.includes(props.alfabeto) && "disabled"}`}
+            onClick={() => {
+                setTimeout(() => {
+                    document.querySelectorAll('.disabled').forEach((elemento) => {
+                        elemento.setAttribute('disabled', 'disabled');
+                    })
+                }, 200)
+                letterClicked(props.alfabeto)
+            }} className={`button-letter ${isSelected && "disabled"}`}
         >
             <p>{props.alfabeto}</p>
         </button>
@@ -26,24 +29,30 @@ function Letra(props) {
 
 export default function Letras(props) {
     const [numCliques, setNumCliques] = useState(0);
-    const [rodadasRestantes, setRodadasRestantes] = useState(5);
+    /* const [rodadasRestantes, setRodadasRestantes] = useState(5); */
+    const [selectedLetters, setSelectedLetters] = useState([]);
 
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
 
-    function contagemClicks() {
+    function contagemClicks(letra) {
         setNumCliques(numCliques + 1);
-        setRodadasRestantes(5 - numCliques - 1);
+        /* setRodadasRestantes(5 - numCliques - 1); */
         if (numCliques >= 5) {
             alert("Você perdeu");
             window.location.reload(); // recarrega a página
         } else {
-            alertRodadasRestantes();
+            /* alertRodadasRestantes(); */
         }
+
+        const newSelectedLetters = [...selectedLetters];
+        newSelectedLetters.push(letra);
+        setSelectedLetters(newSelectedLetters);
+        console.log(newSelectedLetters);
     }
 
-    function alertRodadasRestantes() {
+/*     function alertRodadasRestantes() {
         alert(`Rodadas restantes: ${rodadasRestantes}`);
-    }
+    } */
 
     return (
         <div className="lower-area">
@@ -52,6 +61,7 @@ export default function Letras(props) {
                     <Letra
                         alfabeto={letra}
                         key={letra}
+                        selectedLetters={selectedLetters}
                         onLetterClicked={contagemClicks}
                     />
                 ))}
